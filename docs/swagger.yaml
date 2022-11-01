@@ -1,0 +1,220 @@
+definitions:
+  controller.itemsInput:
+    properties:
+      description:
+        type: string
+      item_code:
+        type: string
+      order_id:
+        type: integer
+      quantity:
+        type: integer
+    type: object
+  controller.ordersInput:
+    properties:
+      customer_name:
+        type: string
+      order_id:
+        type: integer
+      ordered_at:
+        type: string
+    type: object
+  models.Items:
+    properties:
+      created_at:
+        type: string
+      description:
+        type: string
+      item_code:
+        type: string
+      item_id:
+        type: integer
+      order_id:
+        type: integer
+      quantity:
+        type: integer
+      updated_at:
+        type: string
+    type: object
+  models.Orders:
+    properties:
+      created_at:
+        type: string
+      customer_name:
+        type: string
+      order_id:
+        type: integer
+      ordered_at:
+        type: string
+      updated_at:
+        type: string
+    type: object
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+paths:
+  /items:
+    get:
+      description: Get a list of Items.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Items'
+            type: array
+      summary: Get all Items.
+      tags:
+      - Items
+    post:
+      description: Creating a new Items.
+      parameters:
+      - description: the body to create a new Items
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/controller.itemsInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Items'
+      summary: Create New Items.
+      tags:
+      - Items
+  /items/{id}:
+    delete:
+      description: Delete a Items by id.
+      parameters:
+      - description: Items id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: boolean
+            type: object
+      summary: Delete one Items.
+      tags:
+      - Items
+    patch:
+      description: Update Items by id.
+      parameters:
+      - description: Items id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: the body to update age rating category
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/controller.itemsInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Items'
+      summary: Update Items.
+      tags:
+      - Items
+  /orders:
+    get:
+      description: Get a list of Order.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Orders'
+            type: array
+      summary: Get all Orders.
+      tags:
+      - Order
+    post:
+      description: Creating a new Order.
+      parameters:
+      - description: the body to create a new Order
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/controller.ordersInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Orders'
+      summary: Create New Order.
+      tags:
+      - Order
+  /orders/{id}:
+    delete:
+      description: Delete a Order by id.
+      parameters:
+      - description: Order id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: boolean
+            type: object
+      summary: Delete one Order.
+      tags:
+      - Order
+    patch:
+      description: Update Order by id.
+      parameters:
+      - description: Order id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: the body to update order
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/controller.ordersInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Orders'
+      summary: Update Order.
+      tags:
+      - Order
+swagger: "2.0"
